@@ -1,0 +1,15 @@
+<% visitor = notification.visitor %>
+<% visited = notification.visited %>
+
+<div>
+	<%= link_to user_path(visitor) do %>
+	<%= attachment_image_tag user , :profile_image, :fill, 200, 200, format: 'jpeg', class: "img-circle profile-img", fallback: "no_image.jpg" %>
+	<p><span><%= user.user_name %></span>さんが</p>
+
+    case notification.action
+       when 'follow' then
+       <span>"あなたをフォローしました"</span>
+       when 'like' then
+       <p><%= link_to 'あなたの投稿', notification.post, style: "font-weight: bold;" %><span>にいいねしました</span></p>
+    <% end %>
+</div>

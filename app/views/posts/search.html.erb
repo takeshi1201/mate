@@ -1,0 +1,21 @@
+<div>
+	<div>
+		<h2>検索結果</h2>
+		<%= form_tag hashtag_search_posts_path, :method => 'get' do %>
+		  <%= text_field_tag :search ,params[:search]%>
+		  <%= submit_tag '検索', :hashtag_name => nil %>
+		<% end %>
+		<dir>
+			<% @posts.each do |post| %>
+			<%= link_to user_path(post.user.id) do %>
+				<%= post.hashtag_name %>
+				<%= post.user.user_name %>
+				<%= post.comment %>
+				<div>
+					<%= attachment_image_tag post.user ,:profile_image %>
+				</div>
+			<% end %>
+			<% end %>
+		</dir>
+	</div>
+</div>

@@ -1,0 +1,17 @@
+<h1 class="text-center">Mate</h1>
+
+<div class="container">
+	<div>
+		<% @category_users.each do |category_user| %>
+			<div class="text-center">
+				<div class="container clearfix">
+					<%= link_to user_path(category_user.user.id) do %>
+						<%= attachment_image_tag category_user.user, :profile_image, :fill, 500, 500, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
+						<%= category_user.user.user_name %>
+					<% end %>
+				</div>
+				</div>
+			</div>
+		<% end %>
+	</div>
+</div>

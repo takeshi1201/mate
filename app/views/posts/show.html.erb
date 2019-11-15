@@ -1,0 +1,24 @@
+<h1 class="text-center">Mate</h1>
+
+<div class="container">
+
+	<div>
+		<%= attachment_image_tag @post.user, :profile_image %>
+	</div>
+
+	<div>
+		<%= @post.user.user_name %>
+	</div>
+			<div>
+
+			   <%= attachment_image_tag @post, :post_image %>
+			</div>
+
+			<div>
+				<%= @post.hashtag_name %>
+			</div>
+
+			<div>
+				<%= @post.comment %>
+			</div>
+</div>

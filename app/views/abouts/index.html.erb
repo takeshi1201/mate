@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row">
+  	<h1 class="text-center">Mate</h1>
+  	<div class="header clearfix">
+  	</div>
+			<div class="top-message">
+			  <h2>Let's make friends</h2>
+				<p>あなたの街にもいる<br>あなたのの思いをわかる友達探しに</p>
+			</div>
+			    <div class="btn-wrapper">
+			      <div class="sign text-center">
+			        <p><%= link_to "ログイン", new_user_session_path ,class: "btn btn-info btn-lg ", :style=>"padding: 25px 170px; font-size: 30px;" %></p>
+			      </div>
+			      <div class="sign text-center">
+			        <p><%= link_to "新規会員登録", new_user_registration_path, class: "btn btn-success btn-lg", :style=>"padding: 25px 160px; font-size: 30px;" %></p>
+			      </div>
+			    </div>
+			</div>
+  	</div>
+	</div>
+
+<style>
+	.header {
+		border-bottom: 0.5px solid #EEEEEE;
+	}
+ 
+	.top-message h2 {
+		font-size: 70px;
+		text-align: center;
+		margin-bottom: 100px;
+	}
+
+	.top-message p {
+		font-size: 30px;
+		text-align: center;
+		margin-bottom: 100px;
+	}
+
+
+	.sign p {
+		padding-bottom: 50px;
+	}
+
+
+</style>

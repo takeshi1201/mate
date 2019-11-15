@@ -1,0 +1,143 @@
+<h1 class="text-center">Mate</h1>
+<%= link_to "TOP", tops_path %>
+<hr>
+
+<div class="container">
+  <div class="row">
+  	<div class="profile-name">
+      <h2 class="text-center"><%= @user.user_name %></h2>
+    </div>
+
+  	 <div class="profile-image">
+      <%= attachment_image_tag @user, :profile_image, :fill, 500, 500, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
+    </div>
+
+      <div class="follow-box">
+        <div>
+         <p><%=link_to "フォロー", follows_user_path(@user.id) %><span><%= @user.followings.count %></span></p>
+         <p><%=link_to "フォロワー", followers_user_path(@user.id) %> <span><%= @user.followers.count %></span></p>
+          <% if current_user != @user %>
+            <% if @user.followed_by?(current_user) %>
+              <p><%=link_to "フォロー済み", user_relationships_path(@user.id), method: :delete %></p>
+            <% else %>
+              <p><%=link_to "フォローする", user_relationships_path(@user.id), method: :post %></p>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div class="clearfix">
+        <% if @user.id == current_user.id %>
+        <% else %>
+          <% if @isRoom == true %>
+            <p><a href="/rooms/<%= @roomId %>">チャットへ</a>
+          <% else %>
+            <%= form_for @room do |f| %>
+              <%= fields_for @entry do |e| %>
+                <%= e.hidden_field :user_id, :value=> @user.id %>
+              <% end %>
+              <%= f.submit "チャットを始める" %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+      
+        <div class="pro-box">
+          <span>職業</span>
+          <span><%= @user.profession %></span>
+        </div>
+
+        <div class="pro-box">
+          <span>年齢</span>
+          <span><%= @user.user_age %></span>
+        </div>
+
+     <div class="category-box clearfix">
+     	<h2>カテゴリー</h2>
+     	<% @category_users.each do |category_user| %>
+        <span><%= category_user.category.category_name %></span>
+      <% end %>
+     </div>
+
+      <div class="category-box clearfix">
+       <div>
+      	<h2>自己紹介文</h2>
+      	<span><%= @user.profile_comment %></span>
+       </div>
+      </div>
+
+      <div class=" text-center clearfix">
+        <% if @user.id == current_user.id %>
+         <p><%= link_to "プロフィール編集", edit_user_path(@user)%></p>
+        <% end %>
+      </div>
+
+
+      <div class="clearfix">
+      	<% @posts.each do |post| %>
+        <div class="post-box">
+          <span><%= attachment_image_tag post, :post_image ,:fill, 380, 380, format: 'jpeg', class: "img-circle profile-img", fallback: "no_image.jpg" %></span>
+        </div>
+        <% end %>
+      </div>
+    </div>
+</div>
+
+<style>
+
+ .profile-name {
+  margin-bottom: 40px;
+  font-size: 90px;
+ }
+
+  h2,  p {
+    font-size: 60px;
+  }
+
+  .profile-image {
+    padding-left: 50px;
+  }
+
+  .follow-box {
+    padding-top: 170px ;
+    padding-left: 80px;
+    display: inline-block;
+  }
+
+  .clearfix {
+    padding-bottom: 100px;
+  }
+
+  .pro-box span {
+    margin-left: 330px;
+    margin-bottom: 50px;
+    font-size: 50px;
+    display: inline-block;
+  }
+
+
+  .category-box {
+    margin-left: 90px;
+    display: inline-block;
+  }
+
+  .category-box h2 {
+    padding-bottom : 25px;
+  }
+
+  .category-box span {
+    font-size: 45px;
+    padding-right: 60px;
+  }
+ .post-box span {
+  float:left;
+ }
+
+
+
+
+
+
+
+
+</style>
+

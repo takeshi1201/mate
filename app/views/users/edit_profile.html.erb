@@ -1,0 +1,43 @@
+<h1 class="text-center">Mate</h1>
+
+<h1 class="text-center">会員登録情報編集</h1>
+<div class="container">
+  <% if @user_profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @user_profile.errors.count %> 件のエラーがあります。</h2>
+      <ul>
+        <% @user_profile.errors.full_messages.each do |msg| %>
+        <li> <%= msg %> </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= form_for(@user_profile) do |f| %>
+    <div class="profile">
+      <h2 class="text-center">アカウント名</br>
+        <%= f.text_field :user_name %>
+      </h2>
+
+
+      <h2 class="text-center">住所</br>
+        <%= f.text_field :address %>
+      </h2>
+
+
+      <h2 class="text-center">メールアドレス</br>
+        <%= f.text_field :email %>
+      </h2>
+
+    </div>
+      <h2 class="text-center">
+        <%= f.submit "更新"%>
+      </h2>
+  <%end%>
+</div>
+
+<style>
+     .text-center{
+          margin-top: 30px;
+          margin-bottom: 30px;
+     }
+</style>

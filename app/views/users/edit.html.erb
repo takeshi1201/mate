@@ -1,0 +1,78 @@
+<h1 class="text-center">Mate</h1>
+<hr>
+<div class="container">
+  <div class="row">
+    <h1 class="text-center">マイページ編集</h1>
+    <%= form_for (@user) do |f| %>
+        <div class="profile">
+          <div class="form-user">
+            <div class="text-center">
+              <%= attachment_image_tag @user, :profile_image, :fill, 350, 350, format: 'jpeg', class: "img-circle profile-img", fallback: "no_image.jpg" %>
+            </div>
+            <div class="profile-box pull-right clearfix">
+              <%= f.attachment_field :profile_image ,placeholder: "プロフィール画像", class: "user-edit-form"  %>
+            </div>
+            <div class="border clearfix">
+            </div>
+              <div class="pro-box">
+                <p>職業</p>
+                <span><%= f.text_field :profession %></span>
+              </div>
+
+              <div class="pro-box">
+                <p>年齢</p>
+                <span><%= f.text_field :user_age %></span>
+              </div>
+
+              <div class="pro-box">
+                <p>コメント　</p>
+                <p><%= f.text_area :profile_comment %></p>
+              </div>
+            </div>
+            <div class="border clearfix">
+            </div>
+          <div class="field">
+            <h2>カテゴリー選択</h2>
+          <!-- <div class="form-category"> -->
+            <%#= f.fields_for :category_user do |i| %>
+              <%= collection_check_boxes(:user, :category_ids, Category.all, :id, :category_name) do |i| %>
+                <%= i.label { i.check_box + i.text } %>
+              <% end %>
+            <%# end %>
+          </div>
+        </div>
+          <h2 class="text-center">
+            <%= f.submit "保存" %>
+          </h2>
+    <% end %>
+  </div>
+</div>
+
+
+<style>
+
+  .border {
+    border-bottom: 1px solid black;
+    padding: 25px 0 ;
+  }
+
+  .pro-box p {
+    font-size: 50px;
+    margin-left: 250px;
+    display: inline-block;
+  }
+
+  .pro-box span {
+    padding-left: 200px;
+    font-size: 50px
+  }
+  .pro-box {
+    padding: 25px 0;
+  }
+
+  .profile-box {
+    display: inline-block;
+  }
+
+
+</style>

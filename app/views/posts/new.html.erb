@@ -1,0 +1,28 @@
+
+<h1 class="text-center">Mate</h1>
+
+<div class="container">
+	<%= link_to '戻る', tops_path %>
+	<h2 class="text-center">新規投稿</h2>
+	<%= form_for (@post) do |f| %>
+		<div>
+			<h3>投稿画像</h3>
+			 <%= f.attachment_field :post_image %>
+		</div>
+
+		<div>
+			<h3>ハッシュタグワード</h3>
+			<%= f.text_field :hashtag_name %>
+		</div>
+
+		<div>
+			<h3>コメント</h3>
+			<%= f.text_area :comment %>
+		</div>
+
+		<div>
+			<%= f.submit "投稿" %>
+		</div>
+
+	<% end %>
+</div>
