@@ -1,53 +1,47 @@
-<h1 class="text-center">Mate</h1>
-
-<%= link_to "TOP", tops_path %>
-
 <div class="container">
-
-	<div>
-		<% @posts.each do |post| %>
-			<div class="content clearfix">
-				<div>
-					<%= link_to user_path(post.user.id) do %>
-						<%= attachment_image_tag post.user, :profile_image %>
-					<% end %>
-				</div>
-
-				<div>
-					<%= post.user.user_name %>
-				</div>
-				<div>
-				   <%= attachment_image_tag post, :post_image %>
-				</div>
-
-				<div>
-					<%= post.hashtag_name %>
-				</div>
-
-				<div>
-					<%= post.comment %>
-				</div>
-				<% if post.liked_by?(current_user) %>
-				  <li>
-				    <%= link_to post_likes_path(post), method: :delete do %>
-				      <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-				      <%= post.likes.count %> いいね
-				    <% end %>
-				  </li>
-				<% else %>
-				  <li>
-				    <%= link_to post_likes_path(post), method: :post do %>
-				      <i class="fa fa-heart-o" aria-hidden="true"></i>
-				      <%= post.likes.count %> いいね
-				    <% end %>
-				  </li>
-				<% end %>
-
-		<!-- <div>
-			#一つの投稿がわかるように線を追加
-		</div>-->
+	<div class="row">
+		<h1 class="text-center">Mate</h1>
+		<div class="header clearfix">
+			<%= link_to "TOP", tops_path %>
 		</div>
-		<% end %>
+		<div>
+				<% @posts.each do |post| %>
+					<div class="content clearfix">
+						<div>
+							<%= link_to user_path(post.user.id) do %>
+								<%= attachment_image_tag post.user, :profile_image , :fill, 100, 100, format: 'jpeg', class: "img-circle profile-img", fallback: "no_image.jpg"%>
+							<% end %>
+						</div>
+						<div>
+							<%= post.user.user_name %>
+						</div>
+						<div>
+							<%= post.hashtag_name %>
+						</div>
+						<div>
+							<%= post.comment %>
+						</div>
+						<% if post.liked_by?(current_user) %>
+						  <li>
+						    <%= link_to post_likes_path(post), method: :delete do %>
+						      <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+						      <%= post.likes.count %> いいね
+						    <% end %>
+						  </li>
+						<% else %>
+						  <li>
+						    <%= link_to post_likes_path(post), method: :post do %>
+						      <i class="fa fa-heart-o" aria-hidden="true"></i>
+						      <%= post.likes.count %> いいね
+						    <% end %>
+						  </li>
+						<% end %>
+						<div>
+						   <%= attachment_image_tag post, :post_image ,:fill, 1100, 400, format: 'jpeg', fallback: "no_image.jpg"%>
+						</div>
+				  </div>
+				<% end %>
+			</div>
 	</div>
-
 </div>
+

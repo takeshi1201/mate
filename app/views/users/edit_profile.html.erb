@@ -1,7 +1,10 @@
-<h1 class="text-center">Mate</h1>
-
-<h1 class="text-center">会員登録情報編集</h1>
 <div class="container">
+  <div class="row">
+    <h1 class="text-center">Mate</h1>
+    <div class="header clearfix">
+      <p><%= link_to "戻る", tops_path ,:style=>" font-size: 20px;"%></p>
+    </div>
+    <h2 class="text-center">会員登録情報編集</h2>
   <% if @user_profile.errors.any? %>
     <div id="error_explanation">
       <h2><%= @user_profile.errors.count %> 件のエラーがあります。</h2>
@@ -13,31 +16,60 @@
     </div>
   <% end %>
   <%= form_for(@user_profile) do |f| %>
-    <div class="profile">
-      <h2 class="text-center">アカウント名</br>
-        <%= f.text_field :user_name %>
+    <div class="profile text-center">
+      <div>
+        <h3>アカウント名</h3>
+        <p><%= f.text_field :user_name %></p>
+      </div>
+
+      <div>
+        <h3>住所</h3>
+        <p><%= f.text_field :address %></p>
+      </div>
+
+      <div>
+        <h3>メールアドレス</h3>
+        <p><%= f.text_field :email %></p>
+      </div>
+
+      <h2>
+        <%= f.submit "更新",:style=>"padding: 25px 160px; font-size: 30px;"%>
       </h2>
-
-
-      <h2 class="text-center">住所</br>
-        <%= f.text_field :address %>
-      </h2>
-
-
-      <h2 class="text-center">メールアドレス</br>
-        <%= f.text_field :email %>
-      </h2>
-
     </div>
-      <h2 class="text-center">
-        <%= f.submit "更新"%>
-      </h2>
   <%end%>
+  </div>
 </div>
 
+
+
+
 <style>
-     .text-center{
-          margin-top: 30px;
-          margin-bottom: 30px;
-     }
+  .text-center{
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
+  .header {
+    border-bottom: 0.5px solid #EEEEEE;
+  }
+
+  .header p {
+    float: right;
+    margin-right: 200px
+  }
+
+  h2 {
+    font-size: 50px;
+    padding: 35px;
+  }
+
+  .profile  h3 {
+    font-size: 40px;
+    padding-bottom: 5px;
+  }
+
+  .profile p {
+    font-size: 35px;
+    margin-bottom: 40px;
+  }
 </style>

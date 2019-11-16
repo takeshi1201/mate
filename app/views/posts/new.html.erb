@@ -1,28 +1,66 @@
-
-<h1 class="text-center">Mate</h1>
-
 <div class="container">
-	<%= link_to '戻る', tops_path %>
+	<div class="row">
+		<h1 class="text-center">Mate</h1>
+		<div class="header clearfix">
+			<p><%= link_to '戻る', tops_path ,:style=>" font-size: 20px;"%></p>
+		</div>
 	<h2 class="text-center">新規投稿</h2>
 	<%= form_for (@post) do |f| %>
-		<div>
-			<h3>投稿画像</h3>
-			 <%= f.attachment_field :post_image %>
+		<div class="post-box clearfix">
+			<h3 class="text-center">投稿画像</h3>
+			 <p><%= f.attachment_field :post_image, placeholder: "投稿画像", class: "user-post-form", :style=>"padding: 25px 100px; " %></p>
 		</div>
 
-		<div>
-			<h3>ハッシュタグワード</h3>
-			<%= f.text_field :hashtag_name %>
+		<div class="post-text text-center">
+			<p>ハッシュタグワード</p>
+			 <p><%= f.text_field :hashtag_name %></p>
 		</div>
 
-		<div>
-			<h3>コメント</h3>
-			<%= f.text_area :comment %>
+		<div class="post-text text-center">
+			<p>コメント</p>
+			<p><%= f.text_area :comment %></p>
 		</div>
 
-		<div>
-			<%= f.submit "投稿" %>
+		<div class="post-create text-center">
+			<%= f.submit "投稿", :style=>"padding: 25px 100px; font-size: 30px;"  %>
 		</div>
-
 	<% end %>
+	</div>
 </div>
+
+<style>
+  .header {
+    border-bottom: 0.5px solid #EEEEEE;
+  }
+
+  .header p {
+    float: right;
+    margin-right: 200px
+  }
+
+  h2 {
+  	font-size: 50px;
+  	padding-bottom: 30px;
+  }
+
+  .post-box {
+  	margin-bottom: 50px;
+  }
+
+  .post-box h3 {
+  	padding-right: 40px;
+  	font-size:30px;
+  }
+
+  .post-box p {
+  	margin: 0 auto;
+  	width: 35%;
+
+  }
+
+  .post-text {
+  	margin-bottom: 50px;
+  	font-size: 30px;
+  }
+
+</style>
