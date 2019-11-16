@@ -1,20 +1,18 @@
-<h1 class="text-center">Mate</h1>
-<%= link_to "TOP", tops_path %>
-<hr>
-
 <div class="container">
   <div class="row">
-  	<div class="profile-name">
-      <h2 class="text-center"><%= @user.user_name %></h2>
+    <h1 class="text-center">Mate</h1>
+    <div class="header clearfix">
+      <p><%= link_to "戻る", tops_path ,:style=>" font-size: 20px;"%></p>
     </div>
-
+  	<div class="profile-name text-center clearfix">
+      <h2><%= @user.user_name %></h2>
+    </div>
   	 <div class="profile-image">
       <%= attachment_image_tag @user, :profile_image, :fill, 500, 500, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
     </div>
 
       <div class="follow-box">
-        <div>
-         <p><%=link_to "フォロー", follows_user_path(@user.id) %><span><%= @user.followings.count %></span></p>
+         <p><%=link_to "フォロー", follows_user_path(@user.id) %> <span><%= @user.followings.count %></span></p>
          <p><%=link_to "フォロワー", followers_user_path(@user.id) %> <span><%= @user.followers.count %></span></p>
           <% if current_user != @user %>
             <% if @user.followed_by?(current_user) %>
@@ -23,25 +21,9 @@
               <p><%=link_to "フォローする", user_relationships_path(@user.id), method: :post %></p>
             <% end %>
           <% end %>
-        </div>
       </div>
-      <div class="clearfix">
-        <% if @user.id == current_user.id %>
-        <% else %>
-          <% if @isRoom == true %>
-            <p><a href="/rooms/<%= @roomId %>">チャットへ</a>
-          <% else %>
-            <%= form_for @room do |f| %>
-              <%= fields_for @entry do |e| %>
-                <%= e.hidden_field :user_id, :value=> @user.id %>
-              <% end %>
-              <%= f.submit "チャットを始める" %>
-            <% end %>
-          <% end %>
-        <% end %>
-      </div>
-      
-        <div class="pro-box">
+
+        <div class="pro-box clearfix">
           <span>職業</span>
           <span><%= @user.profession %></span>
         </div>
@@ -52,22 +34,38 @@
         </div>
 
      <div class="category-box clearfix">
-     	<h2>カテゴリー</h2>
+     	<h2>カテゴリー <span class="glyphicon glyphicon-ok"></span></h2>
      	<% @category_users.each do |category_user| %>
         <span><%= category_user.category.category_name %></span>
       <% end %>
      </div>
 
       <div class="category-box clearfix">
-       <div>
+       <div class="pro-comment">
       	<h2>自己紹介文</h2>
       	<span><%= @user.profile_comment %></span>
        </div>
       </div>
 
-      <div class=" text-center clearfix">
+      <div class="chat clearfix">
         <% if @user.id == current_user.id %>
-         <p><%= link_to "プロフィール編集", edit_user_path(@user)%></p>
+          <% else %>
+          <% if @isRoom == true %>
+            <p><a href="/rooms/<%= @roomId %>">チャットへ</a>
+          <% else %>
+            <%= form_for @room do |f| %>
+              <%= fields_for @entry do |e| %>
+                <%= e.hidden_field :user_id, :value=> @user.id %>
+              <% end %>
+              <%= f.submit "チャットを始める",class: "btn btn-info" ,:style=> "font-size: 50px;"  %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="pro-edit text-center clearfix">
+        <% if @user.id == current_user.id %>
+         <p><%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-default",:style=> "font-size: 50px;" %></p>
         <% end %>
       </div>
 
@@ -79,19 +77,23 @@
         </div>
         <% end %>
       </div>
-    </div>
+  </div>
 </div>
 
 <style>
-
- .profile-name {
-  margin-bottom: 40px;
-  font-size: 90px;
+ .header {
+    border-bottom: 0.5px solid #EEEEEE;
  }
 
-  h2,  p {
-    font-size: 60px;
-  }
+ .header p {
+  float: right;
+  margin-right: 200px
+ }
+
+ .profile-name {
+    margin-bottom: 40px;
+    font-size: 90px;
+ }
 
   .profile-image {
     padding-left: 50px;
@@ -100,16 +102,32 @@
   .follow-box {
     padding-top: 170px ;
     padding-left: 80px;
+    margin-bottom: 50px;
     display: inline-block;
   }
+  .follow-box p {
+    font-size: 60px
+  }
 
-  .clearfix {
-    padding-bottom: 100px;
+  .follow-box span {
+    padding-left: 10px;
+    font-family: fantasy;
+  }
+
+  .chat {
+    margin-left: 370px;
+    margin-top: 50px;
+    margin-bottom: 25px;
+  }
+
+  .pro-box {
+    margin-top: 100px;
+    margin-bottom: 50px;
+    border-bottom: 0.5px solid #EEEEEE;
   }
 
   .pro-box span {
     margin-left: 330px;
-    margin-bottom: 50px;
     font-size: 50px;
     display: inline-block;
   }
@@ -121,15 +139,30 @@
   }
 
   .category-box h2 {
+    font-size: 50px;
+    margin-top: 30px;
     padding-bottom : 25px;
   }
 
   .category-box span {
-    font-size: 45px;
-    padding-right: 60px;
+    font-size: 40px;
+    padding-right: 100px;
   }
+
+  .pro-comment {
+    margin-top: 90px;
+  }
+
+  .pro-comment span {
+    padding-right: 100px;
+  }
+
  .post-box span {
-  float:left;
+    float:left;
+ }
+
+ .pro-edit {
+    padding-bottom: 50px;
  }
 
 
