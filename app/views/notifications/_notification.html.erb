@@ -1,15 +1,24 @@
 <% visitor = notification.visitor %>
 <% visited = notification.visited %>
 
-<div>
-	<%= link_to user_path(visitor) do %>
-	<%= attachment_image_tag user , :profile_image, :fill, 200, 200, format: 'jpeg', class: "img-circle profile-img", fallback: "no_image.jpg" %>
-	<p><span><%= user.user_name %></span>さんが</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <span>
+                <%= link_to user_path(notification.visitor) do %>
+                    <%= "#{notification.visitor}" %>
+                <% end %>
+            </span>
 
-    case notification.action
-       when 'follow' then
-       <span>"あなたをフォローしました"</span>
-       when 'like' then
-       <p><%= link_to 'あなたの投稿', notification.post, style: "font-weight: bold;" %><span>にいいねしました</span></p>
-    <% end %>
+            <span>
+                <% case notification.action when 'follow' %>
+                    <span>さんがあなたをフォローしました</span>
+                <% when 'like' %>
+                    <%= link_to "あなたの投稿", post_path(notification.post_id) %>
+                    <span>をいいねしました</span>
+                <% end %>
+            </span>
+            <%= time_ago_in_words(notification.created_at).upcase %>
+        </div>
+    </div>
 </div>

@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   attachment :profile_image
-  attachment :post_image
+  # attachment :post_image
   has_many :category_users, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
@@ -36,7 +36,7 @@ class User < ApplicationRecord
   end
 
 
-  def create_notification_follow!(current_user)
+  def create_notification_follow(current_user)
     temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'follow'])
     if temp.blank?
       notification = current_user.active_notifications.new(

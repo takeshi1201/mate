@@ -1,6 +1,6 @@
 class Post < ApplicationRecord
 	belongs_to :user
-	attachment :profile_image
+	# attachment :profile_image
 	attachment :post_image
   has_many :notifications, dependent: :destroy
 	has_many :likes, dependent: :destroy
