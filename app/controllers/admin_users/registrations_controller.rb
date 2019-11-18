@@ -60,10 +60,10 @@ class AdminUsers::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
   def after_sign_up_path_for(resource)
-    admin_posts_path
+    admins_posts_path
   end
 
   def after_inactive_sign_up_path_for(resource)
-    admin_posts_path
+    admins_posts_path
   end
 end
