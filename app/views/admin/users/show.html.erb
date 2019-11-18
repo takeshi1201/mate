@@ -1,0 +1,40 @@
+<h1>Admin::Users#show</h1>
+<p>Find me in app/views/admin/users/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <h1 class="text-center">Mate</h1>
+  	<div class="profile-name text-center clearfix">
+      <h2><%= @user.user_name %></h2>
+    </div>
+  	 <div class="profile-image">
+      <%= attachment_image_tag @user, :profile_image, :fill, 500, 500, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
+     </div>
+
+	        <div class="pro-box clearfix">
+	          <span>職業</span>
+	          <span><%= @user.profession %></span>
+	        </div>
+
+	        <div class="pro-box">
+	          <span>年齢</span>
+	          <span><%= @user.user_age %></span>
+	        </div>
+
+      <div class="category-box clearfix">
+       <div class="pro-comment">
+      	<h2>自己紹介文</h2>
+      	<span><%= @user.profile_comment %></span>
+       </div>
+      </div>
+      <%= link_to "削除", admin_user_path(@user), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+
+
+      <div class="clearfix">
+      	<% @posts.each do |post| %>
+	        <div class="post-box">
+	          <span><%= attachment_image_tag post, :post_image ,:fill, 380, 380, format: 'jpeg', class: "img-circle profile-img", fallback: "no_image.jpg" %></span>
+	        </div>
+        <% end %>
+      </div>
+  </div>
+</div>

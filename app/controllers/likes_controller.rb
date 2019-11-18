@@ -2,9 +2,9 @@ class LikesController < ApplicationController
 
 	def create
 		post = Post.find(params[:post_id])
+		post.create_notification_like!(current_user)
 		like = current_user.likes.new(post_id: post.id)
 		like.save
-		post.create_notification_like!(current_user)
 		redirect_to posts_path(post)
 	end
 
