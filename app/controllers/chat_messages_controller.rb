@@ -9,4 +9,8 @@ class ChatMessagesController < ApplicationController
       redirect_back(fallback_location: tops_path(current_user))
     end
   end
+
+  def index
+  end
+
 end

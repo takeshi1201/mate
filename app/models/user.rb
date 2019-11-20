@@ -4,7 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   attachment :profile_image
-  # attachment :post_image
+  validates :user_name, presence: true
+  validates :profile_image, presence: true
+  validates :profession, presence: true
+  validates :user_age, presence: true
+  validates :profile_comment, presence: true
   has_many :category_users, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
@@ -46,5 +50,8 @@ class User < ApplicationRecord
       notification.save if notification.valid?
     end
   end
+
+  # def follow.exists?(following_id: current_user.id, follower_id: @user.id) || follow.exists?(following_id: @user.id, follower_id: current_user.id)
+  # end
 
 end

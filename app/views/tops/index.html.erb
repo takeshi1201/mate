@@ -7,14 +7,7 @@
 			  <%= submit_tag 'Search', :hashtag_name => nil %>
 			<% end %>
 		</div>
-		<div class="navbar-header clearfix">
-		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-		        <span class="sr-only">Toggle navigation</span>
-		        <span class="icon-bar"></span>
-		        <span class="icon-bar"></span>
-		        <span class="icon-bar"></span>
-		      </button>
-			</div>
+		
 
 				<div>
 				<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
@@ -37,6 +30,13 @@
 
 				<div>
 					<%= link_to '通知一覧', notifications_path %>
+						<%# if unchecked_nofitications.any? %>
+						<span></span>
+					<%# end %>
+				</div>
+
+				<div>
+					<%= link_to 'DM欄', chat_messages_path %>
 				</div>
 
 				<div>
@@ -44,19 +44,20 @@
 				</div>
 				<hr>
 			</div>
-
-				<div class="clearfix">
+				<% @categories.each do |category| %>
+					<%= link_to category_path(category.id) do %>
+					<div class="category-box col-xs-6">
 						<div>
-							<% @categories.each do |category| %>
-								<%= link_to category_path(category.id) do %>
-								<div>
-									<p><%= category.category_name %></p>
-									<%= image_tag category.category_image.to_s,size: '500x400' %>
-								<% end %>
-							<% end %>
+							<p><%= category.category_name %></p>
 						</div>
-				</div>
-			
+						<span><%= image_tag category.category_image.to_s,size: '500x400' %></span>
+					</div>
+
+					<% end %>
+				<% end %>
 	</div>
 </div>
+<style>
+	
+</style>
 

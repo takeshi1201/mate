@@ -34,12 +34,13 @@ devise_for :users, controllers: {
 
   resources :contacts, only: [:new , :create]
   resources :rooms ,only: [:create, :show, :index]
-  resources :chat_messages ,only: [:create]
+  resources :chat_messages ,only: [:create, :index]
   resources :notifications, only: [:index]
 
   get '/users/category/:id' => 'categories#show', as: 'category'
   get '/users/:id/edit_profile' => 'users#edit_profile', as: 'edit_profile'
   patch '/users/:id' => 'users#update_profile'
+  patch '/users/:id/edit' => 'users#update'
 
   get 'abouts' => 'abouts#index'
   get 'tops' => 'tops#index'

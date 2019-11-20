@@ -2,23 +2,23 @@
 <% visited = notification.visited %>
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <span>
-                <%= link_to user_path(notification.visitor) do %>
-                    <%= "#{notification.visitor}" %>
-                <% end %>
-            </span>
+  <div class="row">
+    <div class="col-md-12">
+      <span>
+        <%= link_to user_path(notification.visitor) do %>
+          <%= "#{notification.visitor.user_name}" %>
+        <% end %>
+      </span>
 
-            <span>
-                <% case notification.action when 'follow' %>
-                    <span>さんがあなたをフォローしました</span>
-                <% when 'like' %>
-                    <%= link_to "あなたの投稿", post_path(notification.post_id) %>
-                    <span>をいいねしました</span>
-                <% end %>
-            </span>
-            <%= time_ago_in_words(notification.created_at).upcase %>
-        </div>
+      <span>
+        <% case notification.action when 'follow' %>
+            <span>さんがあなたをフォローしました</span>
+        <% when 'like' %>
+          <%= link_to "あなたの投稿", post_path(notification.post_id) %>
+            <span>をいいねしました</span>
+          <% end %>
+      </span>
+      <%= time_ago_in_words(notification.created_at).upcase %>
     </div>
+  </div>
 </div>

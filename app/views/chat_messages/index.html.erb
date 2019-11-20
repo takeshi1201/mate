@@ -1,0 +1,22 @@
+<div class="container">
+	<div class="row">
+		<h1 class="text-center">Mate</h1>
+		<div class="header clearfix">
+      <p><%= link_to "戻る", tops_path ,:style=>"text-decoration:none; font-size: 20px;"%></p>
+    </div>
+    <div>
+    	<% current_user.entries.each do |entry| %>
+					<% entry.room.entries.each do |entry| %>
+						<% if entry.user.id != current_user.id %>
+						 <%= link_to room_path(entry.room.id) do %>
+							<%= entry.user.user_name %>
+							<%= attachment_image_tag entry.user, :profile_image,:fill, 100, 100, format: 'jpeg', class: "img-circle profile-img", fallback: "no_image.jpg" %>
+						 <% end %>
+						<% end %>
+				<% end %>
+			<% end %>
+    </div>
+	</div>
+</div>
+
+

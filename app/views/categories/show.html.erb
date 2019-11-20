@@ -1,17 +1,49 @@
-<h1 class="text-center">Mate</h1>
-
 <div class="container">
-	<div>
+	<div class="row">
+		<h1 class="text-center">Mate</h1>
+		<div class="header clearfix">
+      <p><%= link_to "戻る", tops_path ,:style=>"text-decoration:none; font-size: 20px;"%></p>
+    </div>
+    <div class="category-name">
+			<%= @category.category_name %>
+		</div>
 		<% @category_users.each do |category_user| %>
-			<div class="text-center">
-				<div class="container clearfix">
+				<div class="category clearfix">
 					<%= link_to user_path(category_user.user.id) do %>
-						<%= attachment_image_tag category_user.user, :profile_image, :fill, 500, 500, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
-						<%= category_user.user.user_name %>
+						<%= attachment_image_tag category_user.user, :profile_image, :fill, 700, 300, format: 'jpeg', class: "profile-img ", fallback: "no_image.jpg" %>
+						<span><%= category_user.user.user_name %></span>
 					<% end %>
 				</div>
-				</div>
-			</div>
 		<% end %>
 	</div>
 </div>
+
+<style>
+	.header {
+    border-bottom: 0.5px solid #EEEEEE;
+  }
+
+  .header p {
+    float: right;
+  }
+  .category-name {
+  	font-size: 80px;
+  	letter-spacing: 5px;
+  	text-align: center;
+  }
+
+  .category {
+  	margin: 50px 0;
+  }
+
+  .category span {
+  	float: right;
+  	font-size: 30px;
+  }
+
+  .profile-img {
+  	border-radius: 10%;
+  	width: 100%;
+  	margin: 0 auto;
+  }
+</style>

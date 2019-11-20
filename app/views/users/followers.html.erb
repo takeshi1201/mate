@@ -1,16 +1,14 @@
 <div class="container">
 	<% @users.each do |user| %>
 	  <hr>
-	  <p><span>email: </span><%= link_to user.email, user_path(user.id) %></p>
+	  <p><%= attachment_image_tag user, :profile_image, :fill, 1000, 400, format: 'jepeg', class: "img-circle" %></p>
+	  <p><%= link_to user.user_name, user_path(user.id) %></p>
 	    <% if current_user != user %>
 	        <% if user.followed_by?(current_user) %>
-	            <p><%=link_to "フォロー済み", user_relationships_path(user.id), method: :delete %></p>
+	          <p><%=link_to "フォロー済み", user_relationships_path(user.id), method: :delete %></p>
 	        <% else %>
-	            <p><%=link_to "フォローする", user_relationships_path(user.id), method: :post %></p>
+	          <p><%=link_to "フォローする", user_relationships_path(user.id), method: :post %></p>
 	        <% end %>
 	    <% end %>
 	<% end %>
-	<div>
-		
-	</div>
-</div>
+<div>
