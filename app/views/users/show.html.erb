@@ -47,21 +47,23 @@
        </div>
       </div>
 
-      <div class="chat clearfix">
-        <% if @user.id == current_user.id %>
-          <% else %>
-          <% if @isRoom == true %>
-            <p><a href="/rooms/<%= @roomId %>">チャットへ</a>
-          <% else %>
-            <%= form_for @room do |f| %>
-              <%= fields_for @entry do |e| %>
-                <%= e.hidden_field :user_id, :value=> @user.id %>
+      <% if Relationship.exists?(following_id: current_user.id, follower_id: @user.id) && Relationship.exists?(following_id: @user.id, follower_id: current_user.id) %>
+        <div class="chat clearfix">
+          <% if @user.id == current_user.id %>
+            <% else %>
+            <% if @isRoom == true %>
+              <p><a href="/rooms/<%= @roomId %>">お話をしよう！</a></p>
+            <% else %>
+              <%= form_for @room do |f| %>
+                <%= fields_for @entry do |e| %>
+                  <%= e.hidden_field :user_id, :value=> @user.id %>
+                <% end %>
+                <p><%= f.submit "DMを送ろう",class: "btn btn-info"  %></p>
               <% end %>
-              <%= f.submit "チャットを始める",class: "btn btn-info" ,:style=> "font-size: 50px;"  %>
             <% end %>
           <% end %>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
 
       <div class="pro-edit text-center clearfix">
         <% if @user.id == current_user.id %>
@@ -114,10 +116,12 @@
     font-family: fantasy;
   }
 
-  .chat {
-    margin-left: 370px;
-    margin-top: 50px;
-    margin-bottom: 25px;
+  .  p {
+    text-align: center;
+    margin: 50px 0;
+    font-size: 50px;
+    text-decoration:none;
+
   }
 
   .pro-box {
@@ -162,6 +166,7 @@
  }
 
  .pro-edit {
+    padding-top: 50px;
     padding-bottom: 50px;
  }
 

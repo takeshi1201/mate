@@ -31,3 +31,20 @@
 
 en:
   hello: "Hello world"
+
+ja:
+  activerecord:
+      model:
+        user: ユーザ
+      attributes:
+        user:
+          id: ID
+          created_at: 登録日時
+          updated_at: 更新日時
+          email: メールアドレス
+          user_name: アカウント名
+          address: 住所
+          user_age: 年齢
+          profession: 職業
+          profile_image: プロフィール画像
+          profile_comment: 自己紹介文

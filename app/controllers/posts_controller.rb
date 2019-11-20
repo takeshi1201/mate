@@ -17,12 +17,12 @@ class PostsController < ApplicationController
 	end
 
 	def index
-		@posts = Post.all
+		@posts = Post.all.order(created_at: :desc)
 	end
 
 	def search
-    @posts = Post.search(params[:search])
-  end
+    	@posts = Post.search(params[:search])
+    end
 
 	private
 	def post_params

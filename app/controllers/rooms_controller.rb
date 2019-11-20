@@ -10,9 +10,9 @@ class RoomsController < ApplicationController
   def show
     @room = Room.find(params[:id])
     if Entry.where(:user_id => current_user.id, :room_id => @room.id).present?
-      @messages = @room.chat_messages  #?
+      @messages = @room.chat_messages
       @message = ChatMessage.new
-      @entries = @room.entries #?
+      @entries = @room.entries
     else
       redirect_back(fallback_location: tops_path(current_user))
     end

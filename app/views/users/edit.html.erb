@@ -2,10 +2,19 @@
   <div class="row">
     <h1 class="text-center">Mate</h1>
     <div class="header clearfix">
-      <p><%= link_to "戻る", tops_path ,:style=>" font-size: 20px;"%></p>
     </div>
+    <%= @user.errors.inspect %>
+    <% if @user.errors.any? %>
+      <div id="error_explanation" class="alert alert-danger">
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
      <h2 class="text-center">マイページ編集</h2>
-    <%= form_for (@user) do |f| %>
+    <%= form_for @user, url: edit_user_path do |f| %>
         <div class="profile">
           <div class="form-user">
             <div class="text-center">
@@ -51,6 +60,7 @@
 <style>
   .header {
     border-bottom: 0.5px solid #EEEEEE;
+    margin-bottom: 30px;
   }
 
   .header p {
@@ -107,5 +117,8 @@
     padding-right: 50px;
   }
 
+  .field_with_errors {
+    display: contents;
+  }
 
 </style>

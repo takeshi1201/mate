@@ -1,11 +1,12 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, :only => [:show]
   def show
   	@user = User.find(params[:id])
     @category_users = @user.category_users
     @posts = @user.posts
-    @currentUserEntry = Entry.where(user_id: current_user.id)
-    @userEntry = Entry.where(user_id: @user.id)
-    if @user.id == current_user.id
+    @currentUserEntry = Entry.where(user_id: current_user.id)  #entryの中のuser_idにログインしているユーザを入れる
+    @userEntry = Entry.where(user_id: @user.id) #entryの中のuser_idに他のユーザを入れる
+    if @user.id == current_user.id #もし他のユーザとログインユーザが合致すれば。。次のelseに。
     else
       @currentUserEntry.each do |cu|
         @userEntry.each do |u|
@@ -30,8 +31,14 @@ class UsersController < ApplicationController
 
   def update
   	@user = User.find(params[:id])
-  	@user.update(user_params)
-  	redirect_to user_path(@user.id)
+   if @user.update(user_params)
+    #binding.pry
+  	  redirect_to user_path(@user.id)
+   else
+     #binding.pry
+      render 'edit'
+      #ßredirect_to edit_user_path(@user.id)
+   end
   end
 
   def edit_profile
