@@ -1,17 +1,28 @@
-<h1>Contacts#new</h1>
-<p>Find me in app/views/contacts/new.html.erb</p>
-<%= form_for @contact do |f| %>
+<div class="container">
+	<div class="row">
+		<div>
+			<% if @contact.errors.any? %>
+		    <div id="error_explanation"  class="alert alert-danger">
+		      <ul>
+		        <h2><%= @contact.errors.count %> 件のエラーがあります。</h2>
+		        <% @contact.errors.full_messages.each do |msg| %>
+		        <li> <%= msg %> </li>
+		        <% end %>
+		      </ul>
+		    </div>
+		  <% end %>
+		</div>
+		<%= form_for @contact do |f| %>
+		  <div class="form-group">
+		    <%= f.label :email, '返信先メールアドレス' %>
+		    <%= f.text_field :email, class: 'form-control' %>
+		  </div>
+		 <div class="form-group">
+		   <%= f.label :message, 'お問い合わせ内容' %>
+		   <%= f.text_area :message, size: '10x10', class: 'form-control' %>
+		 </div>
 
-  <div class="form-group">
-    <%= f.label :email, '返信先メールアドレス' %>
-    <%= f.text_field :email, class: 'form-control' %>
-  </div>
-
- <div class="form-group">
-   <%= f.label :message, 'お問い合わせ内容' %>
-   <%= f.text_area :message, size: '10x10', class: 'form-control' %>
- </div>
-
-  <%= f.submit '送信' %>
-
-<% end %>
+		  <%= f.submit '送信' %>
+		<% end %>
+	</div>
+</div>

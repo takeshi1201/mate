@@ -3,10 +3,10 @@
     <h1 class="text-center">Mate</h1>
     <div class="header clearfix">
     </div>
-    <%= @user.errors.inspect %>
     <% if @user.errors.any? %>
       <div id="error_explanation" class="alert alert-danger">
         <ul>
+          <h2><%= @user.errors.count %>件のエラーがあります。</h2>
           <% @user.errors.full_messages.each do |message| %>
             <li><%= message %></li>
           <% end %>

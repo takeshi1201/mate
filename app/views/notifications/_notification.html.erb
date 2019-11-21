@@ -7,6 +7,7 @@
       <span>
         <%= link_to user_path(notification.visitor) do %>
           <%= "#{notification.visitor.user_name}" %>
+          <%= attachment_image_tag visitor ,:profile_image,:fill, 100, 100, format: 'jpeg', class: "img-circle profile-img", fallback: "no_image.jpg" %>
         <% end %>
       </span>
 

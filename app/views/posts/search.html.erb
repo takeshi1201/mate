@@ -2,31 +2,31 @@
 	<div class="row">
 		<h1 class="text-center">Mate</h1>
 		<div class="header clearfix">
-      <p><%= link_to "戻る", tops_path ,:style=>"text-decoration:none; font-size: 20px;"%></p>
 			<%= form_tag hashtag_search_posts_path, :method => 'get' do %>
-			  <%= text_field_tag :search ,params[:search]%>
+			  <h2 class="text-center"><%= text_field_tag :search ,params[:search]%>
 			  <%= submit_tag '検索', :hashtag_name => nil %>
-			<% end %>
+			<% end %></h2>
+			<p><%= link_to "戻る", tops_path ,:style=>"text-decoration:none; font-size: 20px;"%></p>
     </div>
-		<h2 class="text-center">検索結果</h2>
+		<h3 class="text-center">検索結果</h3>
 		<% @posts.each do |post| %>
 			<div class="search col-xs-6">
 				<%= link_to user_path(post.user.id), :style =>"text-decoration:none;" do %>
 					<div class="pro-file">
-						<p><%= attachment_image_tag post, :post_image, :fill, 550, 450, format: 'jpeg', fallback: "no_image.jpg" %></p>
+						<p><%= attachment_image_tag post, :post_image, :fill, 550, 450, format: 'jpeg', class: "img-thumbnail", fallback: "no_image.jpg" %></p>
 					</div>
 					<div class="post-box">
 						<%= attachment_image_tag post.user ,:profile_image ,:fill, 100, 100, format: 'jpeg', class: "profile-img img-circle", fallback: "no_image.jpg" %>
 						<p><%= post.user.user_name %></p>
 					</div>
+				<% end %>
 					<div class="hashtag">
 							<%= post.hashtag_name %>
 					</div>
 					<div class="post-comment">
 						<%= post.comment %>
 					</div>
-					
-				<% end %>
+				
 			</div>
 		<% end %>
 	</div>
@@ -39,14 +39,16 @@
   }
 
   .header p {
+    display: inline-block;
     float: right;
+    margin-right: 100px;
   }
 
   .search {
   	margin-top: 50px;
   }
 
-  h2 {
+  h3 {
   	font-size: 50px;
   }
 

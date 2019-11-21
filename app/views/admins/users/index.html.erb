@@ -1,0 +1,22 @@
+<div class="container">
+	<div class="row">
+		<h1 class="text-center">Mate(管理者)</h1>
+		<div class="header clearfix">
+			<%= link_to "TOP" ,admins_posts_path %>
+		</div>
+		<div>
+				<% @users.each do |user| %>
+					<div class="content clearfix">
+						<div class="post-profile">
+							<%= link_to admins_user_path(user.id) do %>
+								<%= attachment_image_tag user, :profile_image , :fill, 100, 100, format: 'jpeg', class: "img-circle profile-img", fallback: "no_image.jpg"%>
+							<% end %>
+						</div>
+						<div class="post-name">
+							<%= user.user_name %>
+						</div>
+				  </div>
+				<% end %>
+			</div>
+	</div>
+</div>

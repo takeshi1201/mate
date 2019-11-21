@@ -47,18 +47,21 @@ class UsersController < ApplicationController
 
   def update_profile
     @user_profile = User.find(params[:id])
-    @user_profile.update(user_params)
-    redirect_to user_path(@user.id)
+    if @user_profile.update(user_params)
+       redirect_to edit_profile_path(@user_profile.id)
+    else
+      render 'edit_profile'
+    end
   end
 
   def follows
-    user = User.find(params[:id])
-    @users = user.followings
+    @user = User.find(params[:id])
+    @users = @user.followings
   end
 
   def followers
-    user = User.find(params[:id])
-    @users = user.followers
+    @user = User.find(params[:id])
+    @users = @user.followers
   end
 
   private
