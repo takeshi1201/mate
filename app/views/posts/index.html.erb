@@ -7,7 +7,7 @@
 			<% @posts.each do |post| %>
 				<div class="post-box col-xs-6">
 					<div class="post-image">
-						<p><%= attachment_image_tag post, :post_image ,:fill, 550, 450, format: 'jpeg',class: "img-circle", fallback: "no_image.jpg"%></p>
+						<p><%= attachment_image_tag post, :post_image ,:fill, 550, 450, format: 'jpeg',class: "img-thumbnail", fallback: "no_image.jpg"%></p>
 					</div>
 					<div class="pro-image-name">
 						<%= link_to user_path(post.user.id) do %>

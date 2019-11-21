@@ -19,7 +19,7 @@ devise_for :users, controllers: {
 
  #deviseのコントローラのregistrationsを指定（会員登録遷移）隠しコントローラのため（カスタマイズ）
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :users, only: [:show, :edit, :update,] do
+  resources :users, only: [:show, :edit, :update] do
   	resource :relationships, only: [:create, :destroy]
     get :follows, on: :member
     get :followers, on: :member
@@ -39,7 +39,7 @@ devise_for :users, controllers: {
 
   get '/users/category/:id' => 'categories#show', as: 'category'
   get '/users/:id/edit_profile' => 'users#edit_profile', as: 'edit_profile'
-  patch '/users/:id' => 'users#update_profile'
+  patch '/users/:id/edit_profile' => 'users#update_profile'
   patch '/users/:id/edit' => 'users#update'
 
   get 'abouts' => 'abouts#index'

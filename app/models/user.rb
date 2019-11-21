@@ -4,11 +4,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   attachment :profile_image
-  validates :user_name, presence: true
-  validates :profile_image, presence: true
-  validates :profession, presence: true
-  validates :user_age, presence: true
-  validates :profile_comment, presence: true
+  validates :user_name, presence: true, on: :update
+  validates :address, presence: true
+  validates :profile_image, presence: true , on: :update
+  validates :profession, presence: true, on: :update
+  validates :user_age, presence: true, numericality: true, on: :update
+  validates :profile_comment, presence: true, length: { in: 1..100 }, on: :update
   has_many :category_users, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
