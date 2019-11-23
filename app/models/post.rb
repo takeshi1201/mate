@@ -2,6 +2,9 @@ class Post < ApplicationRecord
 	belongs_to :user
 	# attachment :profile_image
 	attachment :post_image
+  validates :post_image, presence: true
+  validates :hashtag_name, presence: true
+  validates :comment, presence: true
   has_many :notifications, dependent: :destroy
 	has_many :likes, dependent: :destroy
 	has_many :liked_users, through: :likes, source: :user #liked_usersによって投稿が誰にいいねされているのかを簡単に取得

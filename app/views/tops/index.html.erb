@@ -3,61 +3,58 @@
 		<h1 class="text-center">Mate</h1>
 		<div class="header clearfix">
 			<%= form_tag hashtag_search_posts_path, :method => 'get' do %>
-			  <%= text_field_tag :search ,params[:search]%>
-			  <%= submit_tag 'Search', :hashtag_name => nil %>
+			  <h2 class="text-center"><%= text_field_tag :search ,params[:search]%>
+			  <%= submit_tag '探す', :hashtag_name => nil %></h2>
 			<% end %>
 		</div>
-		
-
-				<div>
-				<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+			<div class="btn-group btn-group-justified" role="group">
+				<div class="btn-group" role="group">
+					<%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-default" %>
 				</div>
-
-				<div>
-					<%= link_to '投稿一覧',posts_path %>
+				<div class="btn-group" role="group">
+					<%= link_to '投稿一覧',posts_path , class: "btn btn-default" %>
 				</div>
-
-				<div>
-					<%= link_to "新規投稿",new_post_path %>
+				<div class="btn-group" role="group">
+					<%= link_to "新規投稿",new_post_path, class: "btn btn-default" %>
 				</div>
-
-				<div>
-					<%= link_to "マイページ", user_path(current_user.id) %>
+				<div class="btn-group" role="group">
+					<%= link_to "マイページ", user_path(current_user.id),class: "btn btn-default" %>
 				</div>
-				<div>
-					<%= link_to '会員登録情報編集', edit_profile_path(current_user.id) %>
+				<div class="btn-group" role="group">
+					<%= link_to '会員登録情報編集', edit_profile_path(current_user.id), class: "btn btn-default" %>
 				</div>
-
-				<div>
-					<%= link_to '通知一覧', notifications_path %>
-						<%# if unchecked_nofitications.any? %>
-						<span></span>
-					<%# end %>
+				<div class="btn-group" role="group">
+					<%= link_to '通知一覧', notifications_path, class: "btn btn-default" %>
 				</div>
-
-				<div>
-					<%= link_to 'DM欄', chat_messages_path %>
+				<div class="btn-group" role="group">
+					<%= link_to 'DM欄', chat_messages_path , class: "btn btn-default" %>
 				</div>
-
-				<div>
-					<%= link_to 'お問い合わせ', new_contact_path %>
+				<div class="btn-group" role="group">
+					<%= link_to 'お問い合わせ', contacts_new_path, class: "btn btn-default" %>
 				</div>
-				<hr>
 			</div>
-				<% @categories.each do |category| %>
-					<%= link_to category_path(category.id) do %>
-					<div class="category-box col-xs-6">
-						<div>
+		<hr>
+		<% @categories.each do |category| %>
+			<%= link_to category_path(category.id) do %>
+				<div class="category-box clearfix col-xs-6">
 							<p><%= category.category_name %></p>
-						</div>
-						<span><%= image_tag category.category_image.to_s,size: '500x400' %></span>
-					</div>
-
-					<% end %>
-				<% end %>
+					<span><%= image_tag category.category_image.to_s,size: '550x400' %></span>
+				</div>
+			<% end %>
+		<% end %>
 	</div>
 </div>
+
+
+
 <style>
-	
+	.category-box {
+		margin: 25px 0 ;
+	}
+	.category-box p {
+		font-size: 20px;
+		text-align: center;
+	}
+
 </style>
 

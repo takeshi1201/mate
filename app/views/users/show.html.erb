@@ -58,7 +58,7 @@
                 <%= fields_for @entry do |e| %>
                   <%= e.hidden_field :user_id, :value=> @user.id %>
                 <% end %>
-                <p><%= f.submit "DMを送ろう",class: "btn btn-info"  %></p>
+                <p><%= f.submit "DMを送ろう",class: "btn btn-info" %></p>
               <% end %>
             <% end %>
           <% end %>
@@ -108,7 +108,7 @@
     display: inline-block;
   }
   .follow-box p {
-    font-size: 60px
+    font-size: 60px;
   }
 
   .follow-box span {
@@ -116,12 +116,11 @@
     font-family: fantasy;
   }
 
-  .  p {
+  .chat  p {
     text-align: center;
     margin: 50px 0;
     font-size: 50px;
     text-decoration:none;
-
   }
 
   .pro-box {
@@ -169,13 +168,6 @@
     padding-top: 50px;
     padding-bottom: 50px;
  }
-
-
-
-
-
-
-
 
 </style>
 

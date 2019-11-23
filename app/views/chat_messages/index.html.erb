@@ -4,14 +4,21 @@
 		<div class="header clearfix">
       <p><%= link_to "戻る", tops_path ,:style=>"text-decoration:none; font-size: 20px;"%></p>
     </div>
+    <h2 class="text-center">DM</h2>
     <div>
     	<% current_user.entries.each do |entry| %>
 					<% entry.room.entries.each do |entry| %>
 						<% if entry.user.id != current_user.id %>
-						 <%= link_to room_path(entry.room.id) do %>
-							<%= entry.user.user_name %>
-							<%= attachment_image_tag entry.user, :profile_image,:fill, 100, 100, format: 'jpeg', class: "img-circle profile-img", fallback: "no_image.jpg" %>
-						 <% end %>
+						 <div class="dm-message clearfix">
+						 	<table>
+								<thead>
+									<tr>
+										<th><%= attachment_image_tag entry.user, :profile_image,:fill, 150, 150, format: 'jpeg', class: "img-circle profile-img", fallback: "no_image.jpg" %></th><td><%= entry.user.user_name %></td>
+										<span><%= link_to "Messageを送る" ,room_path(entry.room.id), class: "btn btn-success" %></span>
+									</tr>
+								</thead>
+							</table>
+						 </div>
 						<% end %>
 				<% end %>
 			<% end %>
@@ -20,3 +27,30 @@
 </div>
 
 
+
+<style>
+  .header {
+    border-bottom: 0.5px solid #EEEEEE;
+  }
+
+  .header p {
+    float: right;
+    margin-right: 200px
+  }
+
+  .dm-message  {
+  	width: 50%;
+  	margin: 30px auto;
+  }
+
+  .dm-message td {
+  	font-size: 20px;
+		padding-left: 50px;
+  }
+
+  .dm-message span {
+	  float: right;
+		margin-top: 60px;
+  }
+
+</style>

@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   attachment :profile_image
-  validates :user_name, presence: true, on: :update
+  validates :user_name, presence: true
   validates :address, presence: true
   validates :profile_image, presence: true , on: :update
   validates :profession, presence: true, on: :update

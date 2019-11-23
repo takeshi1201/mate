@@ -16,7 +16,7 @@ devise_for :users, controllers: {
   passwords:     'users/passwords',
   registrations: 'users/registrations'
 }
-
+get '/users', to: redirect("/users/sign_up")
  #deviseのコントローラのregistrationsを指定（会員登録遷移）隠しコントローラのため（カスタマイズ）
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users, only: [:show, :edit, :update] do
@@ -32,7 +32,7 @@ devise_for :users, controllers: {
   	resource :likes, only: [:create, :destroy]
   end
 
-  resources :contacts, only: [:new , :create]
+  resources :contacts, only: [:create]
   resources :rooms ,only: [:create, :show, :index]
   resources :chat_messages ,only: [:create, :index]
   resources :notifications, only: [:index]
@@ -41,6 +41,8 @@ devise_for :users, controllers: {
   get '/users/:id/edit_profile' => 'users#edit_profile', as: 'edit_profile'
   patch '/users/:id/edit_profile' => 'users#update_profile'
   patch '/users/:id/edit' => 'users#update'
+  post '/contacts/new' => 'contacts#create'
+  get '/contacts/new' => 'contacts#new'
 
   get 'abouts' => 'abouts#index'
   get 'tops' => 'tops#index'
