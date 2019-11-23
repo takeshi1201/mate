@@ -13,10 +13,10 @@ class AdminUsers::SessionsController < Devise::SessionsController
   #   super
   # end
 
-  # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+   #DELETE /resource/sign_out
+   def destroy
+     new_admin_user_session_path
+   end
 
   # protected
 

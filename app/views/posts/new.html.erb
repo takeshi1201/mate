@@ -4,6 +4,16 @@
 		<div class="header clearfix">
 			<p><%= link_to '戻る', tops_path ,:style=>" font-size: 20px;"%></p>
 		</div>
+    <% if @post.errors.any? %>
+      <div id="error_explanation"  class="alert alert-danger">
+        <ul>
+          <h2><%= @post.errors.count %> 件のエラーがあります。</h2>
+          <% @post.errors.full_messages.each do |msg| %>
+          <li> <%= msg %> </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 	<h2 class="text-center">新規投稿</h2>
 	<%= form_for (@post) do |f| %>
 		<div class="post-box clearfix">
@@ -55,12 +65,14 @@
   .post-box p {
   	margin: 0 auto;
   	width: 35%;
-
   }
 
   .post-text {
   	margin-bottom: 50px;
   	font-size: 30px;
+  }
+  .post-create {
+    margin-bottom: 50px;
   }
 
 </style>

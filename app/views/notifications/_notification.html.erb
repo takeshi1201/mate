@@ -6,8 +6,8 @@
     <div class="col-md-12">
       <span>
         <%= link_to user_path(notification.visitor) do %>
-          <%= "#{notification.visitor.user_name}" %>
           <%= attachment_image_tag visitor ,:profile_image,:fill, 100, 100, format: 'jpeg', class: "img-circle profile-img", fallback: "no_image.jpg" %>
+          <%= "#{notification.visitor.user_name}" %>
         <% end %>
       </span>
 
@@ -20,6 +20,15 @@
           <% end %>
       </span>
       <%= time_ago_in_words(notification.created_at).upcase %>
+      <hr>
     </div>
   </div>
 </div>
+
+
+<style>
+
+  span {
+    font-size: 20px;
+  }
+</style>
