@@ -1,0 +1,73 @@
+<div class="body">
+  <div class="container">
+      <h1 class="text-center">Mate</h1>
+        <div class="header clearfix">
+          <p><%= link_to "新規登録", new_user_registration_path, class: "glyphicon glyphicon-user" %></p>
+          <p><%= link_to "About", abouts_path, class: "glyphicon glyphicon-link" %></p>
+        </div>
+        <div class="heading text-center">
+          <h2>ログイン</h2>
+        </div>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="field">
+            <h2 class="text-center">
+              <p><%= f.label :メールアドレス %><br /></p>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+            </h2>
+          </div>
+
+          <div class="field">
+            <h2 class="text-center">
+              <p><%= f.label :パスワード %><br /></p>
+              <%= f.password_field :password, autocomplete: "current-password" %>
+            </h2>
+          </div>
+
+          <% if devise_mapping.rememberable? %>
+            <div class="field">
+              <h2 class="text-center">
+                <%= f.check_box :remember_me %>
+                <%= f.label :ログインを維持 %>
+              </h2>
+            </div>
+          <% end %>
+
+          <div class="actions">
+            <h2 class="text-center">
+              <%= f.submit "ログイン", :style=>"padding: 25px 160px; font-size: 30px;" %>
+            </h2>
+            <span><%= render "devise/shared/links" %></span>
+          </div>
+        <% end %>
+  </div>
+</div>
+
+<style>
+  .header {
+    border-bottom: 0.5px solid #EEEEEE;
+  }
+
+  .header p {
+    display: inline-block;
+    float: right;
+    padding: 0 15px ;
+  }
+
+  .heading h2 {
+    font-size: 50px;
+    margin-bottom: 80px;
+  }
+
+
+  .field {
+    margin-bottom: 50px;
+  }
+
+  .field p {
+    padding-bottom: 10px;
+  }
+  .actions  span {
+    float: right;
+  }
+
+</style>

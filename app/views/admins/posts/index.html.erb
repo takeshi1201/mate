@@ -1,0 +1,64 @@
+<div class="container">
+	<div class="row">
+		<h1 class="text-center">Mate(管理者)</h1>
+		<div class="header clearfix">
+			<div class="btn-group btn-group-justified" role="group">
+				<div class="btn-group" role="group">
+					<%= link_to "ログアウト", destroy_admin_user_session_path , method: :delete ,class: "btn btn-default"%>
+				</div>
+				<div class="btn-group" role="group">
+					<%= link_to "ユーザ一覧", admins_users_path, class: "btn btn-default" %>
+				</div>
+			</div>
+			<hr>
+				<% @posts.each do |post| %>
+						<div class="post-profile col-xs-6">
+							<div class="post-image">
+						   <p><%= attachment_image_tag post, :post_image ,:fill, 550, 450, format: 'jpeg', fallback: "no_image.jpg"%></p>
+						  </div>
+						  <div class="post-name">
+						    <%= link_to admins_user_path(post.user.id) do %>
+							  	<%= attachment_image_tag post.user, :profile_image , :fill, 100, 100, format: 'jpeg', class: "img-circle profile-img", fallback: "no_image.jpg"%>
+							  	<p><%= post.user.user_name %></p>
+								<% end %>
+							</div>
+							<div class="hastag">
+								<%= post.hashtag_name %>
+							</div>
+							<div class="post-comment">
+								<%= post.comment.truncate(18) %>
+							</div>
+				    </div>
+				<% end %>
+	</div>
+</div>
+
+<style>
+ 	.post-image {
+ 		width: 100%;
+ 		margin:0 auto;
+ 	}
+ 	.post-profile {
+ 		position: relative;
+ 		margin-bottom: 50px;
+ 	}
+
+ 	.post-name p {
+ 		font-size: 35px;
+  	padding-left: 15px;
+  	display: inline-block;
+  	padding-top: 10px;
+ 	}
+
+ 	.hastag {
+  	font-size: 25px;
+  	padding-top: 10px;
+  	border-bottom: 0.5px solid #EEEEEE;
+  }
+
+  .post-comment {
+  	font-size: 25px;
+  	padding-top: 10px;
+  	border-bottom: 0.5px solid #EEEEEE;
+  }
+</style>

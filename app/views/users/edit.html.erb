@@ -1,0 +1,128 @@
+<div class="container">
+  <div class="row">
+    <h1 class="text-center">Mate</h1>
+    <div class="header clearfix">
+      <% if @user.profile_image.present? %>
+      <p><%= link_to "戻る", user_path(current_user.id) ,:style=>" font-size: 20px;" %></p>
+      <% end %>
+    </div>
+    <% if @user.errors.any? %>
+      <div id="error_explanation" class="alert alert-danger">
+        <ul>
+          <h2><%= @user.errors.count %>件のエラーがあります。</h2>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+     <h2 class="text-center">マイページ編集</h2>
+    <%= form_for @user, url: edit_user_path do |f| %>
+        <div class="profile">
+          <div class="form-user">
+            <div class="text-center">
+              <%= attachment_image_tag @user, :profile_image, :fill, 350, 350, format: 'jpeg', class: "img-circle profile-img", fallback: "no_image.jpg" %>
+            </div>
+            <div class="profile-box pull-right clearfix">
+              <%= f.attachment_field :profile_image ,placeholder: "プロフィール画像", class: "user-edit-form"  %>
+            </div>
+
+              <div class="pro-box clearfix">
+                <p>職業</p>
+                <span><%= f.text_field :profession %></span>
+              </div>
+
+              <div class="pro-box">
+                <p>年齢</p>
+                <span><%= f.text_field :user_age %></span>
+              </div>
+
+            </div>
+            <div class="category clearfix">
+              <div class="field">
+                <h2>カテゴリー選択</h2>
+                  <%= collection_check_boxes(:user, :category_ids, Category.all, :id, :category_name) do |i| %>
+                    <span><%= i.label { i.check_box + i.text } %></span>
+                  <% end %>
+              </div>
+            </div>
+        </div>
+
+        <div class="pro-edit clearfix">
+          <h2>自己紹介文</h2>
+          <span><%= f.text_area :profile_comment , size: '50x3' %></span>
+        </div>
+        <h2 class="text-center">
+          <%= f.submit "保存" ,:style=>"padding: 25px 160px; font-size: 30px;"%>
+        </h2>
+    <% end %>
+  </div>
+</div>
+
+
+<style>
+  .header {
+    border-bottom: 0.5px solid #EEEEEE;
+    margin-bottom: 30px;
+  }
+
+  .header p {
+    float: right;
+    margin-right: 200px
+  }
+
+  .pro-edit {
+    width: 80%;
+    margin: 0 auto;
+    padding: 25px 0 ;
+  }
+
+  .pro-edit span {
+    font-size: 30px;
+    margin-left: 50px;
+    margin-top: 1 0px;
+  }
+
+  .pro-edit span {
+    float:left;
+  }
+
+  .pro-box p {
+    font-size: 50px;
+    margin-left: 250px;
+    display: inline-block;
+  }
+
+  .pro-box span {
+    padding-left: 200px;
+    font-size: 50px
+  }
+  .pro-box {
+    padding: 25px 0;
+  }
+
+  .profile-box {
+    display: inline-block;
+  }
+
+  .category {
+    margin-left: 120px;
+    margin-top: 60px;
+
+  }
+
+  .category h2 {
+    font-size: 50px;
+    padding-bottom: 15px;
+  }
+
+  .category span {
+    font-size: 25px;
+    padding-right: 50px;
+  }
+
+  .field_with_errors {
+    display: contents;
+  }
+
+</style>

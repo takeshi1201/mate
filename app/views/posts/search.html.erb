@@ -1,0 +1,74 @@
+<div class="container">
+	<div class="row">
+		<h1 class="text-center">Mate</h1>
+		<div class="header clearfix">
+			<%= form_tag hashtag_search_posts_path, :method => 'get' do %>
+			  <h2 class="text-center"><%= text_field_tag :search ,params[:search]%>
+			  <%= submit_tag '探し', :hashtag_name => nil %>
+			<% end %></h2>
+			<p><%= link_to "戻る", tops_path ,:style=>"text-decoration:none; font-size: 20px;"%></p>
+    </div>
+		<h3 class="search text-center">検索結果</h3>
+		<% @posts.each do |post| %>
+			<div class="search col-xs-6">
+				<%= link_to user_path(post.user.id), :style =>"text-decoration:none;" do %>
+					<div class="pro-file">
+						<p><%= attachment_image_tag post, :post_image, :fill, 550, 450, format: 'jpeg', class: "img-thumbnail", fallback: "no_image.jpg" %></p>
+					</div>
+					<div class="post-box">
+						<%= attachment_image_tag post.user ,:profile_image ,:fill, 100, 100, format: 'jpeg', class: "profile-img img-circle", fallback: "no_image.jpg" %>
+						<p><%= post.user.user_name %></p>
+					</div>
+				<% end %>
+
+					<div class="hashtag">
+							<%= post.hashtag_name %>
+					</div>
+					<div class="post-comment">
+						<%= post.comment.truncate(18) %>
+					</div>
+			</div>
+		<% end %>
+	</div>
+</div>
+
+<style>
+
+  .header {
+    border-bottom: 0.5px solid #EEEEEE;
+  }
+
+  .header p {
+    display: inline-block;
+    float: right;
+    margin-right: 100px;
+  }
+
+  .search {
+  	font-size: 50px;
+  	font-family: 'Osaka';
+  	margin-bottom: 30px;
+  }
+
+
+  .post-box p {
+  	font-size: 30px;
+  	padding-left: 15px;
+  	display: inline-block;
+  	padding-top: 10px;
+  }
+
+  .post-comment {
+  	font-size: 25px;
+  	padding-top: 10px;
+  	margin-bottom: 20px;
+  	border-bottom: 0.5px solid #EEEEEE;
+  }
+
+  .hashtag {
+  	font-size: 25px;
+  	padding-top: 10px;
+  	border-bottom: 0.5px solid #EEEEEE;
+  }
+
+</style>

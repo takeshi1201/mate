@@ -1,0 +1,38 @@
+<div class="container">
+	<div class="row">
+		<h1 class="text-center">Mate(管理者)</h1>
+		<div class="header clearfix">
+			<p><%= link_to "TOP" ,admins_posts_path %></p>
+		</div>
+				<% @users.each do |user| %>
+					<div class="content col-sm-3">
+							<%= link_to admins_user_path(user.id) do %>
+								<p><%= attachment_image_tag user, :profile_image , :fill, 150, 150, format: 'jpeg', class: "img-circle profile-img", fallback: "no_image.jpg"%></p>
+									<p><%= user.user_name %></p>
+							<% end %>
+				  </div>
+				<% end %>
+	</div>
+</div>
+<style>
+	.header {
+    border-bottom: 0.5px solid #EEEEEE;
+ }
+
+ .header p {
+   float: right;
+   margin-right: 200px;
+ }
+
+	.content {
+		margin: 20px 0 20px 0px;
+	}
+
+	.content p {
+		margin: 0 auto;
+		text-align: center;
+	}
+
+
+
+</style>

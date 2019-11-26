@@ -1,0 +1,79 @@
+<div class="container">
+	<div class="row">
+		<h1 class="text-center">Mate</h1>
+		<div class="header clearfix">
+      <p><%= link_to "戻る", :back ,onclick: "window.history.back(); return false;",:style=>"text-decoration:none; font-size: 20px;"%></p>
+    </div>
+		<div class="post-user clearfix">
+		<%= attachment_image_tag @post.user, :profile_image, :fill, 100, 100, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
+		<p><%= @post.user.user_name %></p>
+		</div>
+		
+		<div class="post-img clearfix">
+			<p><%= attachment_image_tag @post, :post_image, :fill, 800, 400, format: 'jpeg', class: "img-thumbnail profile-img ", fallback: "no_image.jpg" %></p>
+		</div>
+		<div class="like">
+			<div id="likes_buttons_<%= @post.id %>">
+	      <p><%= render partial: 'likes/like', locals: { post: @post} %></p>
+	    </div>
+		</div>
+		<div class="hastag">
+			<%= @post.hashtag_name %>
+		</div>
+
+		<div class="post-comment">
+			<%= @post.comment %>
+		</div>
+			<div class="post-kil">
+				<% if @post.user.id == current_user.id %>
+        <p><%= link_to "削除", post_path ,method: :delete, class: "btn btn-default",:style=> "font-size: 30px;" %></p>
+      <% end %>
+			</div>
+	</div>
+</div>
+
+<style>
+	.header {
+    border-bottom: 0.5px solid #EEEEEE;
+  }
+
+  .header p {
+    float: right;
+    margin-right: 200px;
+  }
+
+  .hastag {
+  	font-size: 25px;
+  	padding-top: 30px;
+  	border-bottom: 0.5px solid #EEEEEE;
+  }
+
+  .post-comment {
+  	font-size: 25px;
+  	padding-top: 10px;
+  	margin-bottom: 30px;
+  	border-bottom: 0.5px solid #EEEEEE;
+  }
+
+  .post-kil p {
+  	text-align: center;
+  	margin-top: 30px;
+  }
+
+  .post-img p {
+  	width: 70%;
+  	margin: 20px auto;
+  }
+
+  .post-user p {
+  	font-size: 25px;
+  	padding-left: 130px;
+    padding-top: 25px;
+  }
+
+  .like p {
+    font-size: 20px;
+  	float: right;
+  	margin-right: 70px;
+  }
+</style>

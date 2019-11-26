@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <h1 class="text-center">Mate</h1>
+    <div class="header clearfix">
+      <p><%= link_to "戻る", tops_path ,:style=>"text-decoration:none; font-size: 20px;"%></p>
+    </div>
+    <h2 class="sub-title text-center">通知</h2>
+    <% notifications = @notifications.where.not(visitor_id: current_user.id) %>
+    <% if @notifications.exists? %>
+      <div class="users-index">
+        <%= render @notifications %>
+        <%= paginate @notifications, class: "paginate" %>
+      </div>
+    <% else %>
+      <p>通知はありません</p>
+    <% end %>
+  </div>
+</div>
+
+<style>
+  .header {
+    border-bottom: 0.5px solid #EEEEEE;
+  }
+
+  .header p {
+    float: right;
+    margin-right: 200px;
+  }
+
+  h2 {
+    font-size: 50px;
+    font-family: 'Osaka';
+    letter-spacing: 5px;
+    padding-bottom: 30px;
+  }
+</style>

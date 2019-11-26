@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="row">
+    <h1 class="text-center">Mate</h1>
+    <div class="header clearfix">
+      <p><%= link_to "戻る", chat_messages_path ,:style=>"text-decoration:none; font-size: 20px;"%></p>
+    </div>
+
+    <h1 class="text-center">MESSAGE</h1>
+
+    <h4 class="text-center">参加者</h4>
+    <% @entries.each do |e| %>
+    <div class="join">
+      <p><strong><a href="/users/<%= e.user.id %>"><%= attachment_image_tag e.user, :profile_image, :fill, 100, 100, format: 'jpeg', class: "img-circle profile-img", fallback: "no_image.jpg" %><%= e.user.user_name %>さん </a></strong></p>
+    </div>
+      
+    <% end %>
+    <div class="clearfix">
+      
+    </div>
+    <hr>
+    <% if @messages.present? %>
+      <% @messages.each do |m| %>
+        <strong><%= m.body %></strong>
+        <small>by <strong><a href="/users/<%= m.user_id %>"><%= attachment_image_tag m.user, :profile_image, :fill, 50, 50, format: 'jpeg', class: "img-circle profile-img", fallback: "no_image.jpg" %>   <%= m.user.user_name %>さん</a></strong></small>
+        <hr>
+      <% end %>
+    <% else %>
+      <h3 class="text-center">メッセージはまだありません</h3>
+    <% end %>
+
+    <%= form_for @message do |f| %>
+    <div class="message-form">
+      <%= f.text_field :body, :placeholder => "メッセージを入力して下さい" , :size => 50 ,:style=>" font-size: 30px;"%>
+      <%= f.hidden_field :room_id, :value => @room.id %>
+      <br>
+      <p><%= f.submit "投稿する" ,:style=>" font-size: 30px;" %></p>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+
+
+<style>
+  .header {
+    border-bottom: 0.5px solid #EEEEEE;
+  }
+
+  .header p {
+    float: right;
+    margin-right: 200px;
+  }
+
+  .join {
+    font-size: 20px;
+    margin-left: 250px;
+    float: left;
+  }
+
+  .message-form {
+    text-align: center;
+  }
+  
+  .message-form p {
+    margin: 50px 0;
+  }
+
+
+</style>

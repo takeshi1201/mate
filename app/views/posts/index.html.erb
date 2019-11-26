@@ -1,0 +1,75 @@
+<div class="container">
+	<div class="row">
+		<h1 class="text-center">Mate</h1>
+		<div class="header clearfix">
+			<p><%= link_to "戻る", tops_path,:style=>" font-size: 20px;" %></p>
+		</div>
+			<% @posts.each do |post| %>
+				<div class="post-box col-xs-6">
+					<div class="post-image">
+						<p><%= attachment_image_tag post, :post_image ,:fill, 550, 450, format: 'jpeg',class: "img-thumbnail", fallback: "no_image.jpg"%></p>
+					</div>
+					<div class="pro-image-name">
+						<%= link_to user_path(post.user.id) do %>
+						<%= attachment_image_tag post.user, :profile_image , :fill, 100, 100, format: 'jpeg', class: "img-circle profile-img", fallback: "no_image.jpg"%>
+						<p><%= post.user.user_name %></p>
+					<% end %>
+					</div>
+					<div class="hastag">
+					　<%= post.hashtag_name %>
+					</div>
+					<div class="post-comment">
+					　<%= post.comment.truncate(18) %>
+					</div>
+					<div class="like">
+						<div id="likes_buttons_<%= post.id %>">
+	            <%= render partial: 'likes/like', locals: { post: post} %>
+	          </div>
+					</div>
+				</div>
+			<% end %>
+			<%= paginate @posts, class: "paginate" %>
+	</div>
+</div>
+
+<style>
+	.header {
+    border-bottom: 0.5px solid #EEEEEE;
+  }
+
+  .header p {
+    float: right;
+    margin-right: 200px;
+  }
+
+  .post-box {
+  	margin: 30px 0;
+  }
+
+  .pro-image-name p {
+  	font-size: 30px;
+  	padding-left: 15px;
+  	display: inline-block;
+  	padding-top: 10px;
+  }
+
+  .hastag {
+  	font-size: 25px;
+  	padding-top: 10px;
+  	border-bottom: 0.5px solid #EEEEEE;
+  }
+
+  .post-comment {
+  	font-size: 25px;
+  	padding-top: 10px;
+  	border-bottom: 0.5px solid #EEEEEE;
+  }
+
+  .like {
+  	font-size: 25px;
+  	margin-top: 20px;
+  	list-style: none;
+  }
+
+</style>
+
