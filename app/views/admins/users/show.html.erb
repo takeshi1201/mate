@@ -30,7 +30,6 @@
             <span>住所</span>
             <span><%= @user.address %></span>
           </div>
-          <h3 class="text-center"><%= link_to "削除", admins_user_path(@user), method: :delete, "data-confirm" => "本当に削除しますか？",class: "btn btn-danger btn-block ",:style=> "font-size: 30px;" %></h3>
 
       <div class="category-box clearfix">
        <div class="pro-comment">
@@ -38,16 +37,18 @@
       	<span><%= @user.profile_comment %></span>
        </div>
       </div>
-      
       <hr>
 
       <div class="clearfix">
       	<% @posts.each do |post| %>
 	        <div class="post-box">
-	          <span><%= attachment_image_tag post, :post_image ,:fill, 380, 380, format: 'jpeg', class: "img-circle profile-img", fallback: "no_image.jpg" %></span>
+            <%= link_to admins_post_path(post.id) do %>
+	             <span><%= attachment_image_tag post, :post_image ,:fill, 380, 380, format: 'jpeg', class: "img-circle profile-img", fallback: "no_image.jpg" %></span>
+            <% end %>
 	        </div>
         <% end %>
       </div>
+      <h3 class="text-center"><%= link_to "削除", admins_user_path(@user), method: :delete, "data-confirm" => "本当に削除しますか？",class: "btn btn-danger btn-block ",:style=> "font-size: 30px;" %></h3>
   </div>
 </div>
 <style>

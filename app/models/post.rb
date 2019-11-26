@@ -4,7 +4,7 @@ class Post < ApplicationRecord
 	attachment :post_image
   validates :post_image, presence: true
   validates :hashtag_name, presence: true
-  validates :comment, presence: true
+  validates :comment, presence: true, length: { maximum: 240}
   has_many :notifications, dependent: :destroy
 	has_many :likes, dependent: :destroy
 	has_many :liked_users, through: :likes, source: :user #liked_usersによって投稿が誰にいいねされているのかを簡単に取得

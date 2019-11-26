@@ -2,50 +2,48 @@
   <div class="row">
     <h1 class="text-center">Mate</h1>
     <div class="header clearfix">
-      <p><%= link_to "戻る", tops_path ,:style=>" font-size: 20px;"%></p>
+      <% if request.path.include?("user") %>
+        <p><%= link_to "TOP", tops_path ,:style=>" font-size: 20px;"%></p>
+        <p><%= link_to "戻る",:back ,onclick: "window.history.back(); return false;" ,:style=>" font-size: 20px;"%></p>
+      <% end %>
     </div>
   	<div class="profile-name text-center clearfix">
-      <h2><%= @user.user_name %></h2>
+      <h3><%= @user.user_name %></h3>
     </div>
-  	 <div class="profile-image">
-      <%= attachment_image_tag @user, :profile_image, :fill, 500, 500, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
-    </div>
-
-      <div class="follow-box">
-         <p><%=link_to "フォロー", follows_user_path(@user.id) %> <span><%= @user.followings.count %></span></p>
-         <p><%=link_to "フォロワー", followers_user_path(@user.id) %> <span><%= @user.followers.count %></span></p>
-          <% if current_user != @user %>
-            <% if @user.followed_by?(current_user) %>
-              <p><%=link_to "フォロー済み", user_relationships_path(@user.id), method: :delete %></p>
-            <% else %>
-              <p><%=link_to "フォローする", user_relationships_path(@user.id), method: :post %></p>
+    <div class="pro-file clearfix ">
+      <div class="profile-image col-sm-4">
+        <p><%= attachment_image_tag @user, :profile_image, :fill, 250, 250, format: 'jpeg', class: "img-circle profile-img", fallback: "no_image.jpg" %></p>
+      </div>
+        <div class="pro-fession col-sm-4">
+          <p>
+            <%= @user.profession %><br>
+            <%= @user.user_age %>歳
+          </p>
+        </div>
+        <div class="follow-box col-sm-4">
+           <p><%=link_to "フォロー", follows_user_path(@user.id) %> <span><%= @user.followings.count %></span></p>
+           <p><%=link_to "フォロワー", followers_user_path(@user.id) %> <span><%= @user.followers.count %></span></p>
+            <% if current_user != @user %>
+              <% if @user.followed_by?(current_user) %>
+                <p><%=link_to "フォロー済み", user_relationships_path(@user.id), class: "btn btn-success",:style=>" font-size: 25px;padding: 0px 30px;", method: :delete %></p>
+              <% else %>
+                <p><%=link_to "フォローする", user_relationships_path(@user.id), class: "btn btn-info", :style=>" font-size: 25px;padding: 0px 30px;", method: :post %></p>
+              <% end %>
             <% end %>
-          <% end %>
+        </div>
       </div>
 
-        <div class="pro-box clearfix">
-          <span>職業</span>
-          <span><%= @user.profession %></span>
+        <div class="category-box clearfix">
+          <h3>カテゴリー</h3>
+          <% @category_users.each do |category_user| %>
+            <span><%= category_user.category.category_name %></span>
+          <% end %>
         </div>
 
-        <div class="pro-box">
-          <span>年齢</span>
-          <span><%= @user.user_age %></span>
-        </div>
-
-     <div class="category-box clearfix">
-     	<h2>カテゴリー <span class="glyphicon glyphicon-ok"></span></h2>
-     	<% @category_users.each do |category_user| %>
-        <span><%= category_user.category.category_name %></span>
-      <% end %>
-     </div>
-
-      <div class="category-box clearfix">
-       <div class="pro-comment">
-      	<h2>自己紹介文</h2>
+       <div class="pro-comment clearfix">
+      	<h3>自己紹介文</h3>
       	<span><%= @user.profile_comment %></span>
        </div>
-      </div>
 
       <% if Relationship.exists?(following_id: current_user.id, follower_id: @user.id) && Relationship.exists?(following_id: @user.id, follower_id: current_user.id) %>
         <div class="chat clearfix">
@@ -58,7 +56,7 @@
                 <%= fields_for @entry do |e| %>
                   <%= e.hidden_field :user_id, :value=> @user.id %>
                 <% end %>
-                <p><%= f.submit "DMを送ろう",class: "btn btn-info" %></p>
+                <p><%= f.submit "DMを送ろう",class: "btn btn-info",:style=>" font-size: 40px;padding: 0px 30px;" %></p>
               <% end %>
             <% end %>
           <% end %>
@@ -75,7 +73,9 @@
       <div class="clearfix">
       	<% @posts.each do |post| %>
         <div class="post-box">
-          <span><%= attachment_image_tag post, :post_image ,:fill, 380, 380, format: 'jpeg', class: "img-circle profile-img", fallback: "no_image.jpg" %></span>
+          <%= link_to post_path(post.id) do %>
+            <span><%= attachment_image_tag post, :post_image ,:fill, 380, 380, format: 'jpeg', class: "img-circle profile-img", fallback: "no_image.jpg" %></span>
+          <% end %>
         </div>
         <% end %>
       </div>
@@ -88,27 +88,45 @@
  }
 
  .header p {
-   float: right;
-   margin-right: 200px;
+   display: inline;
+   width: 100%;
+   margin: 0 auto;
+   padding: 0 270px;
  }
 
  .profile-name {
-    margin-bottom: 40px;
-    font-size: 90px;
+   margin-bottom: 40px;
  }
 
-  .profile-image {
-    padding-left: 50px;
+ .profile-name h3 {
+  font-size: 30px;
+ }
+
+ .pro-file {
+   width: 80%;
+   margin: 0 auto;
+ }
+
+  .profile-image p{
+    margin-left: 40px;
+  }
+
+  .pro-fession p {
+    text-align: center;
+    margin-top: 70px;
+    font-size: 25px;
+  }
+
+  .pro-fession span {
+
   }
 
   .follow-box {
-    padding-top: 170px ;
-    padding-left: 80px;
-    margin-bottom: 50px;
+    padding-top: 50px ;
     display: inline-block;
   }
   .follow-box p {
-    font-size: 60px;
+    font-size: 25px;
   }
 
   .follow-box span {
@@ -123,41 +141,30 @@
     text-decoration:none;
   }
 
-  .pro-box {
-    margin-top: 100px;
-    margin-bottom: 50px;
-    border-bottom: 0.5px solid #EEEEEE;
-  }
-
-  .pro-box span {
-    margin-left: 330px;
-    font-size: 50px;
-    display: inline-block;
-  }
-
-
   .category-box {
-    margin-left: 90px;
-    display: inline-block;
+    width: 60%;
+    margin: 0 auto;
+    margin-bottom: 20px;
   }
 
-  .category-box h2 {
-    font-size: 50px;
-    margin-top: 30px;
-    padding-bottom : 25px;
+
+  .category-box h3 {
+    font-size: 25px;
   }
 
   .category-box span {
-    font-size: 40px;
-    padding-right: 100px;
+    font-size: 20px;
+    padding-left: 20px;
   }
 
   .pro-comment {
-    margin-top: 90px;
+    width: 60%;
+    margin:0 auto;
   }
 
   .pro-comment span {
-    padding-right: 100px;
+   padding-left: 20px;
+   font-size: 20px;
   }
 
  .post-box span {

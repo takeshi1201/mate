@@ -2,7 +2,9 @@
   <div class="row">
     <h1 class="text-center">Mate</h1>
     <div class="header clearfix">
+      <% if @user.profile_image.present? %>
       <p><%= link_to "戻る", user_path(current_user.id) ,:style=>" font-size: 20px;" %></p>
+      <% end %>
     </div>
     <% if @user.errors.any? %>
       <div id="error_explanation" class="alert alert-danger">
@@ -47,8 +49,8 @@
         </div>
 
         <div class="pro-edit clearfix">
-          <span>自己紹介文</span>
-          <span><%= f.text_area :profile_comment %></span>
+          <h2>自己紹介文</h2>
+          <span><%= f.text_area :profile_comment , size: '50x3' %></span>
         </div>
         <h2 class="text-center">
           <%= f.submit "保存" ,:style=>"padding: 25px 160px; font-size: 30px;"%>
@@ -70,14 +72,15 @@
   }
 
   .pro-edit {
+    width: 80%;
+    margin: 0 auto;
     padding: 25px 0 ;
   }
 
   .pro-edit span {
-    font-size: 50px;
-    float:left;
-    margin-left: 150px;
-    margin-top: 60px;
+    font-size: 30px;
+    margin-left: 50px;
+    margin-top: 1 0px;
   }
 
   .pro-edit span {
