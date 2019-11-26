@@ -37,6 +37,7 @@ ja:
       model:
         user: ユーザ
         post: 投稿
+        contact: コントタクト
       attributes:
         user:
            created_at: 登録日時
@@ -57,3 +58,6 @@ ja:
            comment: 投稿コメント
            created_at: 登録日時
            updated_at: 更新日時
+        contact:
+           email: メールアドレス
+           message: メッセージ

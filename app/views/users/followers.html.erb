@@ -15,14 +15,15 @@
 					<thead>
 						<tr>
 							<th><%= attachment_image_tag user, :profile_image, :fill, 150, 150, format: 'jepeg', class: "img-circle" %></th><td><%= link_to user.user_name, user_path(user.id) %></td>
-							  <span><% if current_user != user %>
+							  <span>
+							  	<% if current_user != user %>
 									  <% if user.followed_by?(current_user) %>
 									    <%=link_to "フォロー済み", user_relationships_path(user.id), class: "btn btn-success" , method: :delete %>
 									  <% else %>
-									    <%=link_to "フォローする", user_relationships_path(user.id), class: "btn btn-success", method: :post %>
+									    <%=link_to "フォローする", user_relationships_path(user.id), class: "btn btn-info", method: :post %>
 									  <% end %>
 									<% end %>
-							  </span>
+								</span>
 						</tr>
 					</thead>
 				</table>

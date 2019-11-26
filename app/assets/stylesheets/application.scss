@@ -18,13 +18,13 @@
 @import "bootstrap";
 
 body {
-  background-color:#f5fffa;
+  background-color:#ffffe0;
 }
 
 html {
   position: relative;
   min-height: 100%;
-  padding-bottom: 100px;
+  padding-bottom: 120px;
   box-sizing: border-box;
 }
 
@@ -33,8 +33,7 @@ footer {
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 100px;
-  background-color:#e6e6e6;
+  background-color:#f0f8ff;
 }
 footer h5 {
 	text-align: center;

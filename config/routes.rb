@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   namespace :admins do
    resources :users, only: [:index, :show, :destroy]
-   resources :posts , only: [:index , :destroy]
+   resources :posts , only: [:index , :destroy, :show]
   end
 
   devise_for :admin_users, controllers: {
@@ -25,7 +25,7 @@ get '/users', to: redirect("/users/sign_up")
     get :followers, on: :member
   end
 
-  resources :posts, only: [:new, :create, :show, :index] do
+  resources :posts, only: [:new, :create, :show, :destroy, :index] do
     collection do
       get 'search', as:"hashtag_search"
     end

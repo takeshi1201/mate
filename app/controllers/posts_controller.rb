@@ -10,7 +10,7 @@ class PostsController < ApplicationController
 	 if @post.save
 		  redirect_to posts_path
 	 else
-	 		render 'new'
+	 	render 'new'
 	 end
 	end
 
@@ -20,7 +20,13 @@ class PostsController < ApplicationController
 	end
 
 	def index
-		@posts = Post.all.order(created_at: :desc)
+		@posts = Post.page(params[:page]).reverse_order
+	end
+
+	def destroy
+		post = Post.find(params[:id])
+		post.destroy
+		redirect_to user_path(current_user)
 	end
 
 	def search

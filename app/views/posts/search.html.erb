@@ -8,7 +8,7 @@
 			<% end %></h2>
 			<p><%= link_to "戻る", tops_path ,:style=>"text-decoration:none; font-size: 20px;"%></p>
     </div>
-		<h3 class="text-center">検索結果</h3>
+		<h3 class="search text-center">検索結果</h3>
 		<% @posts.each do |post| %>
 			<div class="search col-xs-6">
 				<%= link_to user_path(post.user.id), :style =>"text-decoration:none;" do %>
@@ -20,13 +20,13 @@
 						<p><%= post.user.user_name %></p>
 					</div>
 				<% end %>
+
 					<div class="hashtag">
 							<%= post.hashtag_name %>
 					</div>
 					<div class="post-comment">
-						<%= post.comment %>
+						<%= post.comment.truncate(18) %>
 					</div>
-				
 			</div>
 		<% end %>
 	</div>
@@ -34,7 +34,7 @@
 
 <style>
 
-	.header {
+  .header {
     border-bottom: 0.5px solid #EEEEEE;
   }
 
@@ -45,29 +45,28 @@
   }
 
   .search {
-  	margin-top: 50px;
+  	font-size: 50px;
+  	font-family: 'Osaka';
+  	margin-bottom: 30px;
   }
 
-  h3 {
-  	font-size: 50px;
-  }
 
   .post-box p {
-  	font-size: 35px;
+  	font-size: 30px;
   	padding-left: 15px;
   	display: inline-block;
   	padding-top: 10px;
   }
 
   .post-comment {
-  	font-size: 30px;
+  	font-size: 25px;
   	padding-top: 10px;
   	margin-bottom: 20px;
   	border-bottom: 0.5px solid #EEEEEE;
   }
 
   .hashtag {
-  	font-size: 30px;
+  	font-size: 25px;
   	padding-top: 10px;
   	border-bottom: 0.5px solid #EEEEEE;
   }

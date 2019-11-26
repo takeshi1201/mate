@@ -4,11 +4,13 @@
 		<div class="header clearfix">
       <p><%= link_to "戻る", tops_path ,:style=>"text-decoration:none; font-size: 20px;"%></p>
     </div>
-    <h2 class="text-center">DM</h2>
-    <div>
+    <h2 class="text-center">DM欄</h2>
     	<% current_user.entries.each do |entry| %>
-					<% entry.room.entries.each do |entry| %>
-						<% if entry.user.id != current_user.id %>
+				<% entry.room.entries.each do |entry| %>
+					<% if entry.user.id != current_user.id %>
+
+					 <% if Relationship.exists?(following_id: current_user.id, follower_id: entry.user.id) && Relationship.exists?(following_id: entry.user.id, follower_id: current_user.id) %>
+
 						 <div class="dm-message clearfix">
 						 	<table>
 								<thead>
@@ -20,9 +22,9 @@
 							</table>
 						 </div>
 						<% end %>
+					<% end %>
 				<% end %>
 			<% end %>
-    </div>
 	</div>
 </div>
 
@@ -35,7 +37,7 @@
 
   .header p {
     float: right;
-    margin-right: 200px
+    margin-right: 200px;
   }
 
   .dm-message  {
@@ -52,5 +54,12 @@
 	  float: right;
 		margin-top: 60px;
   }
+
+  h2 {
+  	font-size: 50px;
+    font-family: 'Osaka';
+  	padding-bottom: 30px;
+  }
+
 
 </style>
