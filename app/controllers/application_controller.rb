@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # before_filter :set_request_from
 
 	def after_sign_in_path_for(resource)
-    tops_path
+    root_path
   end
 
   def after_sign_out_path_for(resource)
