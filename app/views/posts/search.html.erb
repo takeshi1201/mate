@@ -6,7 +6,7 @@
 			  <h2 class="text-center"><%= text_field_tag :search ,params[:search]%>
 			  <%= submit_tag '探し', :hashtag_name => nil %>
 			<% end %></h2>
-			<p><%= link_to "戻る", tops_path ,:style=>"text-decoration:none; font-size: 20px;"%></p>
+			<p><%= link_to "戻る", root_path ,:style=>"text-decoration:none; font-size: 20px;"%></p>
     </div>
 		<h3 class="search text-center">検索結果</h3>
 		<% @posts.each do |post| %>

@@ -37,8 +37,8 @@
 		<% @categories.each do |category| %>
 			<%= link_to category_path(category.id) do %>
 				<div class="category-box clearfix col-xs-6">
-							<p><%= category.category_name %></p>
-					<span><%= image_tag category.category_image.to_s,size: '550x400' %></span>
+					<p><%= category.category_name %></p>
+					<span><img src="<%= category.category_image %>" width="550" height="400"></span>
 				</div>
 			<% end %>
 		<% end %>

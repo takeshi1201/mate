@@ -3,7 +3,7 @@
     <h1 class="text-center">Mate</h1>
     <div class="header clearfix">
       <% if request.path.include?("user") %>
-        <p><%= link_to "TOP", tops_path ,:style=>" font-size: 20px;"%></p>
+        <p><%= link_to "TOP", root_path ,:style=>" font-size: 20px;"%></p>
         <p><%= link_to "戻る",:back ,onclick: "window.history.back(); return false;" ,:style=>" font-size: 20px;"%></p>
       <% end %>
     </div>

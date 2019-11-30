@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   namespace :admins do
    resources :users, only: [:index, :show, :destroy]
    resources :posts , only: [:index , :destroy, :show]
+   root 'prosts#index'
   end
 
   devise_for :admin_users, controllers: {
@@ -45,6 +46,6 @@ get '/users', to: redirect("/users/sign_up")
   get '/contacts/new' => 'contacts#new'
 
   get 'abouts' => 'abouts#index'
-  get 'tops' => 'tops#index'
+  root 'tops#index'
 
 end
