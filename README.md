@@ -1,6 +1,8 @@
-# README
+##mat
 
-This README would normally document whatever steps are necessary to get the
+マッチングアプリとSNSを掛け合わせたものサイトです。
+
+このREADMEは、通常、
 application up and running.
 
 Things you may want to cover:
