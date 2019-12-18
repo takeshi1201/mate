@@ -27,13 +27,16 @@
 
 １. お互いがフォローし合わないとダイレクトメッセージが送れないません。<br>
    まずはユーザーをフォローしましょう。
+   <img width="1440" alt="スクリーンショット 2019-12-18 18 23 54" src="https://user-images.githubusercontent.com/54338340/71076006-5915d400-21c8-11ea-8826-3856441ae2c9.png">
    
    
 
 2. フォローされたら通知されます。
+<img width="1440" alt="スクリーンショット 2019-12-18 18 24 37" src="https://user-images.githubusercontent.com/54338340/71076067-6fbc2b00-21c8-11ea-9cae-ce2cfe28a75c.png">
 
 
 3. 相互フォローになったら、相手のプロフィールに『DMを送ろう』ボタンが表示されます。
+<img width="1440" alt="スクリーンショット 2019-12-18 18 25 06" src="https://user-images.githubusercontent.com/54338340/71076134-8e222680-21c8-11ea-9272-c8d14b54ccc0.png">
 
 
 4. そして、ダイレクトメッセージの完了です。
