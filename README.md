@@ -15,8 +15,10 @@
 2. マイページ編集ページでカテゴリーをチェックする。
 <img width="1440" alt="スクリーンショット 2019-12-18 17 23 56" src="https://user-images.githubusercontent.com/54338340/71072654-4d271380-21c2-11ea-98bb-6108e76e1ed4.png">
 
-3. TOPへ遷移し、カテゴリーを選択
+3. TOPページ
 <img width="1439" alt="スクリーンショット 2019-12-18 17 13 10" src="https://user-images.githubusercontent.com/54338340/71073890-9d06da00-21c4-11ea-8a1d-cf139d574af4.png">
+
+4. カテゴリーを選択する（例スポーツ）
 
 ## ダイレクトメッセージの流れ
 
