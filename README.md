@@ -40,26 +40,5 @@
 
 
 4. そして、ダイレクトメッセージの完了です。
+<img width="1440" alt="スクリーンショット 2019-12-18 18 27 01" src="https://user-images.githubusercontent.com/54338340/71076846-bceccc80-21c9-11ea-8fa8-41fc3be164de.png">
 
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* test
-
-* ...
