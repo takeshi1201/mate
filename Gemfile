@@ -68,6 +68,6 @@ gem "refile-mini_magick"
 gem 'carrierwave'
 gem "ransack"
 gem "pry-rails"
-gem 'kaminari','~> 1.1.1'
+gem 'kaminari','~> 1.2.1'
 gem 'rails-i18n'
 gem 'mysql2'
